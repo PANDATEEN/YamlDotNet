@@ -66,7 +66,15 @@ namespace YamlDotNet.Serialization.ObjectGraphVisitors
                     }
                     break;
             }
-
+            
+            if (yamlMember != null)
+            {
+                if (yamlMember.Description != null)
+                {
+                    context.Emit(new Core.Events.Comment(yamlMember.Description, false));
+                }
+            }
+            
             return base.EnterMapping(key, value, context);
         }
     }
